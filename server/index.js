@@ -1,35 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
-const { MONGO, port } = require("./src/config/env");
-const userRoutes = require("./src/routes/user.route");
+const connectMongo = require("./src/config/mongodb");
+const { port } = require("./src/config/env");
 
 const app = express();
-
 app.use(express.json());
+connectMongo();
 
-app.get("/health", (req, res) => {
-  res.json({ status: "ok" });
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
-
-app.use("/api/users", userRoutes);
-
-const startServer = async () => {
-  try {
-    if (!MONGO) {
-      throw new Error("Missing MONGO_URI environment variable");
-    }
-
-    await mongoose.connect(MONGO);
-    console.log("Connected to MongoDB");
-
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
-  } catch (error) {
-    console.error("Failed to start server:", error.message);
-    process.exit(1);
-  }
-};
-
-startServer();
