@@ -9,6 +9,6 @@ app.use(express.json());
 connectMongo();
 app.use("/user", router);
 
-app.listen(port, () => {
+app.listen(port, (req, res) => {
   console.log(`Server is running on port ${port}`);
 });

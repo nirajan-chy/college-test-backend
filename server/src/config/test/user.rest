@@ -1,8 +1,17 @@
 POST http://localhost:7000/user/register
 Content-Type: application/json
 
+# {
+#   "fullname" : "Nirajan",
+#   "email" : "nirajan@gmail.com",
+#   "password" : "qwerty"
+# }
+
 {
-  "fullname" : "Nirajan",
-  "email" : "nirajan@gmail.com",
-  "password" : "qwerty"
+  "fullname" : "Srijan chor",
+  "email" : "srijan@gmail.com",
+  "password" : "qwerty123"
 }
+
+###
+GET http://localhost:7000/user/get
